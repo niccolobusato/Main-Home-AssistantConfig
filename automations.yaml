@@ -1,0 +1,1177 @@
+- id: letsencrypt-renewal
+  alias: Let's Encrypt Renewal
+  trigger:
+  - platform: time
+    at: 00:00:00
+  action:
+  - service: hassio.addon_restart
+    data:
+      addon: core_letsencrypt
+- alias: Accendi Luce Armadio
+  trigger:
+    platform: state
+    entity_id: binary_sensor.porta_armadio
+    to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.armadio
+  id: 9728618277064d41a8b4b044a6d3267d
+- alias: Spegni Luce Armadio dopo 10 minuti
+  trigger:
+    platform: state
+    entity_id: binary_sensor.porta_armadio
+    to: 'on'
+    for:
+      minutes: 10
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.armadio
+  id: b72a06a7ccd1467393518e6e8f2a4dee
+- alias: Spegni Luce Armadio
+  trigger:
+    platform: state
+    entity_id: binary_sensor.porta_armadio
+    to: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.armadio
+  id: 745eb4c268114f9a9cfd4d3bb640a76b
+- alias: Accendi Luce Camera Entrata
+  trigger:
+    platform: state
+    entity_id: binary_sensor.porta_camera
+    to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id:
+    - light.0220046668c63aaf5b32
+    - light.02200466b4e62d07bd0c
+  id: 15d424056f1c442aaab716b7ddd8e626
+- alias: Spegni Luce Camera Entrata dopo 10 minuti
+  trigger:
+    platform: state
+    entity_id: binary_sensor.porta_camera
+    to: 'on'
+    for:
+      minutes: 10
+  action:
+    service: homeassistant.turn_off
+    entity_id:
+    - light.0220046668c63aaf5b32
+    - light.02200466b4e62d07bd0c
+  id: 4c0e800ccb3d4e3d9523e4ba044d0e0b
+- alias: Spegni Luce Camera Entrata
+  trigger:
+    platform: state
+    entity_id: binary_sensor.porta_camera
+    to: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id:
+    - light.0220046668c63aaf5b32
+    - light.02200466b4e62d07bd0c
+  id: c538c2c30bd1470ca35143b163d1d75a
+- id: 6df6a0ef3a7d4f2c919f1ab1da1fb017
+  alias: Luce fuori on
+  trigger:
+  - entity_id: light.06200231b4e62d1f2741
+    from: 'off'
+    platform: state
+    to: 'on'
+  - entity_id: light.78841158840d8ea0baf5
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - data:
+      message: Luci Accese
+      title: Esterno
+    service: notify.ios_niccolo
+  - data:
+      message: Luci Accese
+      title: Esterno
+    service: notify.ios_annalisa
+- id: df4c54f3c8ea44609ee601ac53ed21bb
+  alias: Luce fuori off
+  trigger:
+  - entity_id: light.06200231b4e62d1f2741
+    from: 'on'
+    platform: state
+    to: 'off'
+  - entity_id: light.78841158840d8ea0baf5
+    from: 'on'
+    platform: state
+    to: 'off'
+  action:
+  - data:
+      message: Luci Spente
+      title: Esterno
+    service: notify.ios_niccolo
+  - data:
+      message: Luci Spente
+      title: Esterno
+    service: notify.ios_annalisa
+- id: '1542302304083'
+  alias: Porta Camera aperta notifica
+  trigger:
+  - entity_id: binary_sensor.porta_camera
+    for: '3'
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: device_tracker.niccolo
+    state: not_home
+  action:
+  - data:
+      message: La porta è stata aperta
+      title: Camera
+    service: notify.ios_niccolo
+- id: '1542302382660'
+  alias: Porta Camera Chiusa notifica
+  trigger:
+  - entity_id: binary_sensor.porta_camera
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: device_tracker.niccolo
+    state: not_home
+  action:
+  - data:
+      message: La porta è stata chiusa
+      title: Camera
+    service: notify.ios_niccolo
+- id: fc7cdff314bb4ce5ae4815fa671cb61d
+  alias: Set theme at startup
+  trigger:
+  - event: start
+    platform: homeassistant
+  action:
+  - data:
+      name: Dark - Green
+    service: frontend.set_theme
+- id: '1544311840817'
+  alias: Claudio a casa
+  trigger:
+  - entity_id: device_tracker.life360_claudio
+    event: enter
+    platform: zone
+    zone: zone.home
+  condition: []
+  action:
+  - data:
+      message: è arrivato a Casa
+      title: Claudio
+    service: notify.ios_niccolo
+  - data:
+      message: è arrivato a Casa
+      title: Claudio
+    service: notify.ios_annalisa
+  - data:
+      topic: device/ccasa
+    service: mqtt.publish
+  - data:
+      message: è arrivato a Casa
+      title: Claudio
+    service: notify.mobile_app_qcom_btd
+  - data:
+      message: è arrivato a Casa
+      title: Claudio
+    service: notify.html_macbookniccolo
+- id: '1544311888824'
+  alias: Claudio fuori casa
+  trigger:
+  - entity_id: device_tracker.life360_claudio
+    event: leave
+    platform: zone
+    zone: zone.home
+  condition: []
+  action:
+  - data:
+      message: ha lasciato Casa
+      title: Claudio
+    service: notify.ios_niccolo
+  - data:
+      message: ha lasciato Casa
+      title: Claudio
+    service: notify.ios_annalisa
+  - data:
+      topic: device/cfuori
+    service: mqtt.publish
+  - data:
+      message: ha lasciato Casa
+      title: Claudio
+    service: notify.mobile_app_qcom_btd
+  - data:
+      message: ha lasciato Casa
+      title: Claudio
+    service: notify.html_macbookniccolo
+- id: '1544311945226'
+  alias: Claudio al Bar
+  trigger:
+  - entity_id: device_tracker.life360_claudio
+    event: enter
+    platform: zone
+    zone: zone.bar
+  condition: []
+  action:
+  - data:
+      message: è arrivato al Bar
+      title: Claudio
+    service: notify.ios_niccolo
+  - data:
+      message: è arrivato al Bar
+      title: Claudio
+    service: notify.ios_annalisa
+  - data:
+      topic: device/cbar
+    service: mqtt.publish
+  - data:
+      message: è arrivato al Bar
+      title: Claudio
+    service: notify.mobile_app_qcom_btd
+  - data:
+      message: è arrivato al Bar
+      title: Claudio
+    service: notify.html_macbookniccolo
+- id: '1544311989440'
+  alias: Claudio Lascia bar
+  trigger:
+  - entity_id: device_tracker.life360_claudio
+    event: leave
+    platform: zone
+    zone: zone.bar
+  condition: []
+  action:
+  - data:
+      message: ha lasciato bar
+      title: Claudio
+    service: notify.ios_niccolo
+  - data:
+      message: ha lasciato bar
+      title: Claudio
+    service: notify.ios_annalisa
+  - data:
+      topic: device/cfuori
+    service: mqtt.publish
+  - data:
+      message: ha lasciato bar
+      title: Claudio
+    service: notify.html_macbookniccolo
+  - data:
+      message: ha lasciato bar
+      title: Claudio
+    service: notify.mobile_app_qcom_btd
+- id: '1544558657894'
+  alias: iPad Scarico
+  trigger:
+  - below: '10'
+    entity_id: sensor.ipad_di_niccolo_battery_level
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      message: è scarico, CARICALO!
+      title: iPad
+    service: notify.ios_niccolo_mini
+- id: '1547377755733'
+  alias: Specchio on
+  trigger:
+  - entity_id: switch.sonoff_10003ecc07
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      message: Specchio Acceso
+      title: Camera
+    service: notify.ios_niccolo
+- id: '1547377797338'
+  alias: Specchio off
+  trigger:
+  - entity_id: switch.sonoff_10003ecc07
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      message: Specchio Spento
+      title: Camera
+    service: notify.ios_niccolo
+- id: '1547377860060'
+  alias: Finestra divano aperta
+  trigger:
+  - entity_id: binary_sensor.festra_divano
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: device_tracker.niccolo
+    state: not_home
+  action:
+  - data:
+      message: Finestra divano aperta
+      title: Camera
+    service: notify.ios_niccolo
+- id: '1547377896834'
+  alias: finestra divano chiusa
+  trigger:
+  - entity_id: binary_sensor.festra_divano
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: device_tracker.niccolo
+    state: not_home
+  action:
+  - data:
+      message: Finestra divano chiusa
+      title: Camera
+    service: notify.ios_niccolo
+- id: '1548071793897'
+  alias: Niccolò a casa
+  trigger:
+  - entity_id: device_tracker.niccolo
+    event: enter
+    platform: zone
+    zone: zone.home
+  condition: []
+  action:
+  - data:
+      message: è arrivato a Casa
+      title: Niccolò
+    service: notify.ios_annalisa
+  - data:
+      topic: device/ncasa
+    service: mqtt.publish
+  - data:
+      message: è arrivato a Casa
+      title: Niccolò
+    service: notify.mobile_app_qcom_btd
+- id: '1548071866327'
+  alias: Niccolò fuori casa
+  trigger:
+  - entity_id: device_tracker.niccolo
+    event: leave
+    platform: zone
+    zone: zone.home
+  condition: []
+  action:
+  - data:
+      message: ha lasciato Casa
+      title: Niccolò
+    service: notify.ios_annalisa
+  - data:
+      topic: device/nfuori
+    service: mqtt.publish
+- id: '1548071924935'
+  alias: Niccolò è a lavoro
+  trigger:
+  - entity_id: device_tracker.niccolo
+    event: enter
+    platform: zone
+    zone: zone.work
+  condition: []
+  action:
+  - data:
+      message: è a Lavoro
+      title: Niccolò
+    service: notify.ios_annalisa
+  - data:
+      topic: device/nlavoro
+    service: mqtt.publish
+  - data:
+      message: è a Lavoro
+      title: Niccolò
+    service: notify.mobile_app_qcom_btd
+- id: '1548072009286'
+  alias: niccolo fuori lavoro
+  trigger:
+  - entity_id: device_tracker.niccolo
+    event: leave
+    platform: zone
+    zone: zone.work
+  condition: []
+  action:
+  - data:
+      message: ha lasciato Lavoro
+      title: Niccolò
+    service: notify.ios_annalisa
+  - data:
+      topic: device/nfuori
+    service: mqtt.publish
+- id: '1548072059317'
+  alias: Annalisa a casa
+  trigger:
+  - entity_id: device_tracker.annalisa
+    event: enter
+    platform: zone
+    zone: zone.home
+  condition: []
+  action:
+  - data:
+      message: è arrivata a Casa
+      title: Annalisa
+    service: notify.ios_niccolo
+  - data:
+      topic: device/acasa
+    service: mqtt.publish
+  - data:
+      message: è arrivata a Casa
+      title: Annalisa
+    service: notify.mobile_app_qcom_btd
+  - data:
+      message: è arrivata a Casa
+      title: Annalisa
+    service: notify.html_macbookniccolo
+- id: '1548072096261'
+  alias: annalisa è al bar
+  trigger:
+  - entity_id: device_tracker.annalisa
+    event: enter
+    platform: zone
+    zone: zone.bar
+  condition: []
+  action:
+  - data:
+      message: è arrivata al Bar
+      title: Annalisa
+    service: notify.ios_niccolo
+  - data:
+      topic: device/abar
+    service: mqtt.publish
+  - data:
+      message: è arrivata al Bar
+      title: Annalisa
+    service: notify.mobile_app_qcom_btd
+  - data:
+      message: è arrivata al Bar
+      title: Annalisa
+    service: notify.html_macbookniccolo
+- id: '1548072136021'
+  alias: annalisa fuori casa
+  trigger:
+  - entity_id: device_tracker.annalisa
+    event: leave
+    platform: zone
+    zone: zone.home
+  condition: []
+  action:
+  - data:
+      message: è uscita di Casa
+      title: Annalisa
+    service: notify.ios_niccolo
+  - data:
+      topic: device/afuori
+    service: mqtt.publish
+  - data:
+      message: è uscita di Casa
+      title: Annalisa
+    service: notify.mobile_app_qcom_btd
+  - data:
+      message: è uscita di Casa
+      title: Annalisa
+    service: notify.html_macbookniccolo
+- id: '1548072169084'
+  alias: annalisa fuori bar
+  trigger:
+  - entity_id: device_tracker.annalisa
+    event: leave
+    platform: zone
+    zone: zone.bar
+  condition: []
+  action:
+  - data:
+      message: è uscita dal Bar
+      title: Annalisa
+    service: notify.ios_niccolo
+  - data:
+      topic: device/afuori
+    service: mqtt.publish
+  - data:
+      message: è uscita dal Bar
+      title: Annalisa
+    service: notify.mobile_app_qcom_btd
+  - data:
+      message: è uscita dal Bar
+      title: Annalisa
+    service: notify.html_macbookniccolo
+- id: '1549705454424'
+  alias: telecamera fuori allarme
+  trigger:
+  - above: '1'
+    entity_id: sensor.mailcount
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      data:
+        attachment:
+          content-type: jpg
+          url: https://mydomain.duckdns.org:8765/picture/3/current
+      message: Movimento rilevato
+      title: Garage
+    service: notify.ios_niccolo
+- id: '1549886947661'
+  alias: Luce garage accesa sensore
+  trigger:
+  - entity_id: binary_sensor.pir_garage
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: light.60707618ecfabc23078c
+    data_template:
+      data:
+        file: '{{ trigger.event.data.path }}'
+      message: Created {{ trigger.event.data.file }} in {{ trigger.event.data.folder
+        }}
+      title: New image captured!
+    service: light.turn_on
+  - delay: '30'
+  - data:
+      entity_id: light.60707618ecfabc23078c
+    service: light.turn_off
+- id: '1549963211986'
+  alias: test ir sensor
+  trigger:
+  - entity_id: binary_sensor.pir_esterno
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - delay: '0'
+  - alias: ''
+    data:
+      entity_id: camera.foscam_camera
+      filename: /config/www/test.jpg
+    service: camera.snapshot
+  - delay: '5'
+  - data:
+      data:
+        attachment:
+          content-type: jpg
+          url: /local/test.jpg
+      message: movimento rilevato
+      title: Esterno
+    service: notify.ios_niccolo
+  - data:
+      data:
+        attachment:
+          content-type: jpg
+          url: /local/test.jpg
+      message: movimento rilevato
+      title: Esterno
+    service: notify.ios_annalisa
+  - data:
+      data:
+        image: https://mydomain.duckdns.org:8123/local/test.jpg
+      message: movimento rilevato
+      title: Esterno
+    service: notify.mobile_app_qcom_btd
+  - data:
+      data:
+        url: https://mydomain.duckdns.org:8123/local/test.jpg
+      message: movimento rilevato
+      title: Esterno
+    service: notify.html_macbookniccolo
+- id: '1550085682583'
+  alias: spegni pir
+  trigger:
+  - entity_id: binary_sensor.pir_esterno
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - delay: '10'
+  - data:
+      payload: 303D5E
+      topic: tele/bridge/RESULT
+    service: mqtt.publish
+- id: '1551127502693'
+  alias: Hassio restart ok
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - data:
+      data:
+        attachment:
+          content-type: jpg
+          url: /local/avvio.jpg
+      message: MOTHERFUCKER
+      title: CHOO CHOO
+    service: notify.ios_niccolo
+  - data:
+      topic: ha/update
+    service: mqtt.publish
+- id: '1551733062721'
+  alias: finestra centrale aperta
+  trigger:
+  - entity_id: binary_sensor.festra_centrale
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: device_tracker.niccolo
+    state: not_home
+  action:
+  - data:
+      message: Finestra centrale aperta
+      title: Camera
+    service: notify.ios_niccolo
+- id: '1551733129976'
+  alias: 'finestra centrale chiusa '
+  trigger:
+  - entity_id: binary_sensor.festra_centrale
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: device_tracker.niccolo
+    state: not_home
+  action:
+  - data:
+      message: Finestra centrale chiusa
+      title: Camera
+    service: notify.ios_niccolo
+- id: '1551810651562'
+  alias: Leggere spazzatura da portare
+  trigger:
+  - at: '19:00'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: device_tracker.annalisa
+    state: home
+  action:
+  - data: {}
+    data_template:
+      entity_id: media_player.cucina
+      language: it
+      message: Areo vecio! Ricordatevi di portare fuori il {{ states.calendar.spazzatura_paese.attributes.message}}
+    service: tts.google_say
+- id: '1551817548062'
+  alias: Potrebbe piovere
+  trigger:
+  - entity_id: sensor.yr_symbol
+    platform: state
+    to: '10'
+  condition: []
+  action:
+  - data:
+      message: attenzione sta per Piovere
+      title: Esterno
+    service: notify.ios_niccolo
+- id: '1553031122103'
+  alias: spegni pir garage
+  trigger:
+  - entity_id: binary_sensor.pir_garage
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - delay: '10'
+  - data:
+      payload: E76BBC
+      topic: tele/bridge/RESULT
+    service: mqtt.publish
+- id: '1553031426210'
+  alias: movimento garage notifica
+  trigger:
+  - entity_id: binary_sensor.pir_garage
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: camera.garage
+      filename: /config/www/garage.jpg
+    service: camera.snapshot
+  - delay: '5'
+  - data:
+      data:
+        attachment:
+          content-type: jpg
+          url: /local/garage.jpg
+      message: movimento rilevato
+      title: Garage
+    service: notify.ios_niccolo
+  - data:
+      data:
+        image: https://mydomain.duckdns.org:8123/local/garage.jpg
+      message: movimento rilevato
+      title: Garage
+    service: notify.mobile_app_qcom_btd
+  - data:
+      data:
+        url: https://mydomain.duckdns.org:8123/local/garage.jpg
+      message: movimento rilevato
+      title: Garage
+    service: notify.html_macbookniccolo
+- id: 9728618277064d41a8b4b044a6d3347d
+  alias: '** non più usata** Accendi Luce garage '
+  trigger:
+  - entity_id: binary_sensor.pir_garage
+    platform: state
+    to: 'on'
+  action:
+  - entity_id: light.60707618ecfabc23078c
+    service: homeassistant.turn_on
+  - delay: '30'
+  - entity_id: light.60707618ecfabc23078c
+    service: homeassistant.turn_off
+- id: '1553158943516'
+  alias: spegni pir [Esterno Principale] se si blocca
+  trigger:
+  - entity_id: binary_sensor.pir_esterno
+    for: '120'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      payload: 303D5E
+      topic: tele/bridge/RESULT
+    service: mqtt.publish
+- id: '1553159082997'
+  alias: spegni pir [Garage] se si blocca
+  trigger:
+  - entity_id: binary_sensor.pir_garage
+    for: '120'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      payload: E76BBC
+      topic: tele/bridge/RESULT
+    service: mqtt.publish
+- id: '1559067432026'
+  alias: Notifica Campanello
+  trigger:
+  - entity_id: binary_sensor.campanello
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: camera.camera_niccolo
+      filename: /config/www/cancelletto.jpg
+    service: camera.snapshot
+  - delay: '2'
+  - data:
+      data:
+        attachment:
+          content-type: jpg
+          url: /local/cancelletto.jpg
+      message: qualcuno ha suonato il campanello
+      title: Cancelletto
+    service: notify.ios_niccolo
+- id: '1561059399054'
+  alias: Clima node red ore 14:00
+  trigger:
+  - at: '13:59'
+    platform: time
+  condition: []
+  action:
+  - data:
+      topic: clima_on
+    service: mqtt.publish
+- id: '1561579537549'
+  alias: accendi esterno principale la sera
+  trigger:
+  - at: '20:25'
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: light.06200231b4e62d1f2741
+    service: light.turn_on
+- id: '1561579641680'
+  alias: accendi portico la sera
+  trigger:
+  - at: '20:35'
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: light.78841158840d8ea0baf5
+    service: light.turn_on
+- id: '1561579707142'
+  alias: Spegni esterno principale
+  trigger:
+  - at: 06:30
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: light.06200231b4e62d1f2741
+    service: light.turn_off
+  - data:
+      entity_id: light.78841158840d8ea0baf5
+    service: light.turn_off
+- id: '1561580522549'
+  alias: eleonora a casa
+  trigger:
+  - entity_id: device_tracker.life360_eleonora_busato
+    event: enter
+    platform: zone
+    zone: zone.home
+  condition: []
+  action:
+  - data:
+      message: è arrivata a Casa
+      title: Eleonora
+    service: notify.ios_niccolo
+  - data:
+      message: è arrivata a Casa
+      title: Eleonora
+    service: notify.ios_annalisa
+  - data:
+      topic: device/ecasa
+    service: mqtt.publish
+- id: '1561580577577'
+  alias: eleonora fuori casa
+  trigger:
+  - entity_id: device_tracker.life360_eleonora_busato
+    event: leave
+    platform: zone
+    zone: zone.home
+  condition: []
+  action:
+  - data:
+      message: è uscita di Casa
+      title: Eleonora
+    service: notify.ios_niccolo
+  - data:
+      message: è uscita di Casa
+      title: Eleonora
+    service: notify.ios_annalisa
+  - data:
+      topic: device/efuori
+    service: mqtt.publish
+- id: '1562908881673'
+  alias: non dimenticarti le telecamere
+  trigger:
+  - entity_id: automation.test_ir_sensor
+    for: '3600'
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      entity_id: automation.test_ir_sensor
+    service: automation.turn_on
+- id: '1562925779804'
+  alias: annalisa nonna giusy
+  trigger:
+  - entity_id: device_tracker.annalisa
+    event: enter
+    platform: zone
+    zone: zone.nonna_giusy
+  condition: []
+  action:
+  - data:
+      topic: device/agiusy
+    service: mqtt.publish
+- id: '1562925883705'
+  alias: annalisa fuori nonna giusy
+  trigger:
+  - entity_id: device_tracker.annalisa
+    event: leave
+    platform: zone
+    zone: zone.nonna_giusy
+  condition: []
+  action:
+  - data:
+      topic: device/afuori
+    service: mqtt.publish
+- id: '1562926981469'
+  alias: eleonora al bar
+  trigger:
+  - entity_id: device_tracker.life360_eleonora_busato
+    event: enter
+    platform: zone
+    zone: zone.bar
+  condition: []
+  action:
+  - data:
+      message: è arrivata al Bar
+      title: Eleonora
+    service: notify.ios_niccolo
+  - data:
+      message: è arrivata al Bar
+      title: Eleonora
+    service: notify.ios_annalisa
+  - data:
+      topic: device/ebar
+    service: mqtt.publish
+- id: '1562927205077'
+  alias: eleonora fuori bar
+  trigger:
+  - entity_id: device_tracker.life360_eleonora_busato
+    event: leave
+    platform: zone
+    zone: zone.bar
+  condition: []
+  action:
+  - data:
+      message: è uscita dal Bar
+      title: Eleonora
+    service: notify.ios_annalisa
+  - data:
+      message: è uscita dal Bar
+      title: Eleonora
+    service: notify.ios_niccolo
+  - data:
+      topic: device/efuori
+    service: mqtt.publish
+- id: '1562927366733'
+  alias: eleonora giusy
+  trigger:
+  - entity_id: device_tracker.life360_eleonora_busato
+    event: enter
+    platform: zone
+    zone: zone.nonna_giusy
+  condition: []
+  action:
+  - data:
+      message: è arrivata dalla Nonna Giusy
+      title: Eleonora
+    service: notify.ios_annalisa
+  - data:
+      message: è arrivata dalla Nonna Giusy
+      title: Eleonora
+    service: notify.ios_niccolo
+  - data:
+      topic: device/egiusy
+    service: mqtt.publish
+- id: '1562927499212'
+  alias: eleonora fuori giusy
+  trigger:
+  - entity_id: device_tracker.life360_eleonora_busato
+    event: leave
+    platform: zone
+    zone: zone.nonna_giusy
+  condition: []
+  action:
+  - data:
+      message: è uscita da casa Nonna Giusy
+      title: Eleonora
+    service: notify.ios_niccolo
+  - data:
+      message: è uscita da casa Nonna Giusy
+      title: Eleonora
+    service: notify.ios_annalisa
+  - data:
+      topic: device/efuori
+    service: mqtt.publish
+- id: '1562960590029'
+  alias: niccolò è al bar
+  trigger:
+  - entity_id: device_tracker.aniccolo
+    event: enter
+    platform: zone
+    zone: zone.bar
+  condition: []
+  action:
+  - data:
+      topic: device/nbar
+    service: mqtt.publish
+- id: '1562960734292'
+  alias: niccolò fuori bar
+  trigger:
+  - entity_id: device_tracker.aniccolo
+    event: leave
+    platform: zone
+    zone: zone.bar
+  condition: []
+  action:
+  - data:
+      topic: device/nfuori
+    service: mqtt.publish
+- id: '1562960857250'
+  alias: niccolo giusy
+  trigger:
+  - entity_id: device_tracker.aniccolo
+    event: enter
+    platform: zone
+    zone: zone.nonna_giusy
+  condition: []
+  action:
+  - data:
+      topic: device/ngiusy
+    service: mqtt.publish
+- id: '1562960928138'
+  alias: niccolò fuori giusy
+  trigger:
+  - entity_id: device_tracker.aniccolo
+    event: leave
+    platform: zone
+    zone: zone.nonna_giusy
+  condition: []
+  action:
+  - data:
+      topic: device/nfuori
+    service: mqtt.publish
+- id: '1562961023488'
+  alias: niccolò christina
+  trigger:
+  - entity_id: device_tracker.aniccolo
+    event: enter
+    platform: zone
+    zone: zone.casa_christina
+  condition: []
+  action:
+  - data:
+      topic: device/nchri
+    service: mqtt.publish
+- id: '1562961031756'
+  alias: niccolò christina
+  trigger:
+  - entity_id: device_tracker.aniccolo
+    event: enter
+    platform: zone
+    zone: zone.casa_christina
+  condition: []
+  action:
+  - data:
+      topic: device/nchri
+    service: mqtt.publish
+- id: '1562961045651'
+  alias: niccolò christina
+  trigger:
+  - entity_id: device_tracker.aniccolo
+    event: enter
+    platform: zone
+    zone: zone.casa_christina
+  condition: []
+  action:
+  - data:
+      topic: device/nchri
+    service: mqtt.publish
+- id: '1562961112463'
+  alias: niccolo fuori christina
+  trigger:
+  - entity_id: device_tracker.aniccolo
+    event: leave
+    platform: zone
+    zone: zone.casa_christina
+  condition: []
+  action:
+  - data:
+      topic: device/nfuori
+    service: mqtt.publish
+- id: '1562964048851'
+  alias: luce cucina on
+  trigger:
+  - entity_id: light.koogeek_socket_a27269
+    from: 'off'
+    platform: state
+    to: 'on'
+  - entity_id: light.koogeek_socket_a27269
+    from: unavailable
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      topic: light/cucinaon
+    service: mqtt.publish
+- id: '1562964110200'
+  alias: luce cucina off
+  trigger:
+  - entity_id: light.koogeek_socket_a27269
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      topic: light/cucinaoff
+    service: mqtt.publish
+- id: '1563039322893'
+  alias: vetrina su on node red
+  trigger:
+  - entity_id: switch.sonoff_10003eff18
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      topic: light/vetrinaon
+    service: mqtt.publish
+- id: '1563039379890'
+  alias: vetrina su off node red
+  trigger:
+  - entity_id: switch.sonoff_10003eff18
+    from: 'on '
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      topic: light/spegnilacazzo
+    service: mqtt.publish
+- id: '1565703804408'
+  alias: Spegni campanello
+  trigger:
+  - entity_id: binary_sensor.campanello
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - delay: '5'
+  - data:
+      payload: '810533'
+      topic: tele/bridge/RESULT
+    service: mqtt.publish
+- id: '1565720185219'
+  alias: Suoneria Campanello
+  trigger:
+  - entity_id: binary_sensor.campanello
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: group.avvisi
+      volume_level: '1'
+    service: media_player.volume_set
+  - data:
+      entity_id: group.avvisi
+      media_content_id: https://mydomain.duckdns.org:8123/local/campanello.mp3
+      media_content_type: audio/mp4
+    service: media_player.play_media
+- id: '1565822189849'
+  alias: Richiesta posizione
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+      service: notify.ios_niccolo
+      data:
+        message: "request_location_update"
