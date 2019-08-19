@@ -1,0 +1,22 @@
+# interno garage
+  - platform: ffmpeg
+    input: 'http://192.168.1.97:14511/videostream.cgi?user=admin&pwd=88888888'
+    name: Entrata
+#yicam
+  - platform: ffmpeg
+    input: 'rtsp://192.168.1.125/ch0_1.h264'
+    name: Camera Niccolò
+#iphone4
+  - platform: ffmpeg
+    input: 'http://192.168.1.112:3218/live'
+    name: iPhone4 Camera Niccolò
+#foscam
+  - platform: foscam
+    ip: 192.168.1.198
+    username: !secret foscam_usr_1
+    password: !secret foscam_psw_1 
+  - platform: foscam
+    ip: 192.168.1.103
+    name: Garage
+    username: !secret foscam_usr_2 
+    password: !secret foscam_psw_2

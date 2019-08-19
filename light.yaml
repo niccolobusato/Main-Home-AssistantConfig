@@ -1,0 +1,27 @@
+#######################################################
+####################### mqtt ##########################
+#######################################################
+  - platform: mqtt
+    name: "Scrivania"
+    command_topic: "cmnd/scriva/power"
+    state_topic: "stat/scriva/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Armadio"
+    command_topic: "cmnd/allolamp/power"
+    state_topic: "stat/allolamp/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Principale"
+    command_topic: "cmnd/lampsens/power"
+    state_topic: "stat/lampsens/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true

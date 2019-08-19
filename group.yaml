@@ -1,0 +1,19 @@
+#######################################################
+############### doorbell notifications ################
+#######################################################
+  avvisi:
+    name: Avvisi
+    entities:
+      - media_player.cucina
+      - media_player.camera
+#######################################################
+################ bedroom light group ##################
+#######################################################
+  cameranic:
+    name: Camera Niccolo
+    entities:
+      - light.scrivania
+      - light.02200466b4e62d07bd0c
+      - light.0220046668c63aaf5b32
+      - light.principale
+      - switch.sonoff_10003eff4b

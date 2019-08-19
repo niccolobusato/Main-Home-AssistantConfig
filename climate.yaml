@@ -1,0 +1,8 @@
+# Mitsubishi Climate Bedroom
+  - platform: smartir
+    name: Mitsubishi
+    unique_id: clim_mits
+    device_code: 1001
+    controller_data: 192.168.1.48
+    temperature_sensor: sensor.temperatura_camera
+    humidity_sensor: sensor.umidita_camera

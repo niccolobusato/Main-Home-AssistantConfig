@@ -1,0 +1,109 @@
+  - platform: yr
+  - platform: darksky
+    api_key: 184aef709d5f1b263ab10292f31850e3
+    language: it
+    monitored_conditions:
+      - summary
+      - icon
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - humidity
+#######################################################
+######################## Mqtt #########################
+#######################################################
+  - platform: mqtt
+    name: "Temperatura Camera"
+    state_topic: "tele/lampsens/SENSOR"
+    value_template: "{{ value_json['AM2301'].Temperature -0.9 }}"
+    unit_of_measurement: "°C"
+  - platform: mqtt
+    name: "Umidità Camera"
+    state_topic: "tele/lampsens/SENSOR"
+    value_template: "{{ value_json['AM2301'].Humidity }}"
+    unit_of_measurement: "%"
+#######################################################
+#################### date and hour ####################
+#######################################################
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+#######################################################
+#################### database size  #################### 
+#######################################################
+  - platform: filesize
+    file_paths:
+      - /config/home-assistant_v2.db
+#######################################################
+############### doorbell last triggered ###############
+#######################################################
+  - platform: template
+    sensors:
+      campanello:
+        friendly_name: "Ultima attivazione campanello:"
+        value_template: "{{ states.binary_sensor.campanello.last_changed }}"
+#######################################################
+################### ariela Eleonora ###################
+#######################################################
+  - platform: mqtt
+    name: "Batteria Eleonora"
+    state_topic: "homeassistant/sensor/android_qcom_btd_battery/attributes"
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.state }}"
+    json_attributes_topic: "homeassistant/sensor/android_qcom_btd_battery/attributes"
+  - platform: mqtt
+    name: "Wi-fi Eleonora"
+    state_topic: "homeassistant/sensor/android_qcom_btd_wifi/attributes"
+    value_template: "{{ value_json.state }}"
+    json_attributes_topic: "homeassistant/sensor/android_qcom_btd_wifi/attributes"
+  - platform: mqtt
+    name: "Stato Chiamata Eleonora"
+    state_topic: "homeassistant/sensor/android_qcom_btd_callstate/attributes"
+    value_template: "{{ value_json.state }}"
+    json_attributes_topic : "homeassistant/sensor/android_qcom_btd_callstate/attributes"
+  - platform: mqtt
+    name: "Passi Eleonora"
+    state_topic: "homeassistant/sensor/android_qcom_btd_steps/attributes"
+    unit_of_measurement: 'steps'
+    value_template: "{{ value_json.state }}"
+    json_attributes_topic: "homeassistant/sensor/android_qcom_btd_steps/attributes"
+  - platform: mqtt
+    name: "Schermo Eleonora"
+    state_topic: "homeassistant/sensor/android_qcom_btd_screen/attributes"
+    value_template: "{{ value_json.state }}"
+    json_attributes_topic: "homeassistant/sensor/android_qcom_btd_screen/attributes"
+#######################################################
+#################### ariela Claudio ###################
+#######################################################
+  - platform: mqtt
+    name: "Batteria Claudio"
+    state_topic: "homeassistant/sensor/android_claudio_battery/attributes"
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.state }}"
+    json_attributes_topic: "homeassistant/sensor/android_claudio_battery/attributes"
+  - platform: mqtt
+    name: "Wi-fi Claudio"
+    state_topic: "homeassistant/sensor/android_claudio_wifi/attributes"
+    value_template: "{{ value_json.state }}"
+    json_attributes_topic: "homeassistant/sensor/android_claudio_wifi/attributes"
+  - platform: mqtt
+    name: "Stato Chiamata Claudio"
+    state_topic: "homeassistant/sensor/android_claudio_callstate/attributes"
+    value_template: "{{ value_json.state }}"
+    json_attributes_topic : "homeassistant/sensor/android_claudio_callstate/attributes"
+  - platform: mqtt
+    name: "Passi Claudio"
+    state_topic: "homeassistant/sensor/android_claudio_steps/attributes"
+    unit_of_measurement: 'steps'
+    value_template: "{{ value_json.state }}"
+    json_attributes_topic: "homeassistant/sensor/android_claudio_steps/attributes"
+  - platform: mqtt
+    name: "Schermo Claudio"
+    state_topic: "homeassistant/sensor/android_claudio_screen/attributes"
+    value_template: "{{ value_json.state }}"
+    json_attributes_topic: "homeassistant/sensor/android_claudio_screen/attributes"
+#######################################################
+#################### goodbye baby! ####################
+#######################################################

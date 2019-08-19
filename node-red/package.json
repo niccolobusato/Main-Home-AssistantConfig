@@ -1,0 +1,10 @@
+{
+    "name": "node-red-project",
+    "description": "A Node-RED Project",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "node-red-contrib-fs-ops": "~1.5.0",
+        "node-red-contrib-image-output": "~0.4.3"
+    }
+}

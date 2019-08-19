@@ -1,0 +1,17 @@
+  exclude:
+    domains:
+      - automation
+      - script
+      - weblink
+      - updater
+      - group
+      - input_boolean
+      - input_number
+      - input_select
+      - media_player
+      - weather
+      - zone
+    entities:
+      - sun.sun
+  purge_keep_days: 7
+ 

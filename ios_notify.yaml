@@ -1,0 +1,42 @@
+  push:
+    categories:
+#######################################################
+######### MissuMachine Project Integration ############
+### original project: http://bit.ly/HA-MissuMachine ###
+#######################################################
+      - name: MissuMachine
+        identifier: 'missu'
+        actions:
+          - identifier: 'REPLY'
+            title: 'Inviane uno anche tu'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: true
+            behavior: 'default'
+      - name: MissuMachine2
+        identifier: 'missu2'
+        actions:
+          - identifier: 'REPLY2'
+            title: 'Inviane uno anche tu'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: true
+            behavior: 'default'
+#######################################################
+########### AC Unit Climate notifications #############
+#######################################################
+      - name: Accendiclima
+        identifier: 'clima'
+        actions:
+          - identifier: 'ACLIMA'
+            title: 'Accendi'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: true
+            behavior: 'default'
+          - identifier: 'SCLIMA'
+            title: 'Non accendere'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: true
+            behavior: 'default'

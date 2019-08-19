@@ -1,0 +1,147 @@
+homeassistant:
+  whitelist_external_dirs:
+    - /config/
+  customize: !include customize.yaml
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+# Enables the frontend
+frontend:
+  themes: !include themes.yaml
+# Health
+system_health:
+# Enables a map showing the location of tracked devices
+map:
+# Enables configuration UI
+config:
+# Track the sun
+sun:
+# ffmpeg
+ffmpeg:
+# stream
+stream:
+# History
+history:
+# Cloud
+cloud:
+# Mobile app
+mobile_app:
+##
+automation: !include automations.yaml
+script: !include scripts.yaml
+recorder: !include recorder.yaml
+binary_sensor: !include binary_sensor.yaml
+sensor: !include sensor.yaml
+zone: !include zone.yaml
+ios: !include ios_notify.yaml
+camera: !include camera.yaml
+light: !include light.yaml
+group: !include group.yaml
+climate: !include climate.yaml
+media_player: !include media_player.yaml
+switch: !include switch.yaml
+
+
+# SSL
+http:
+   base_url: !secret duckdns
+   ssl_certificate: /ssl/fullchain.pem
+   ssl_key: /ssl/privkey.pem
+   api_password: !secret http_password
+
+
+# i-frame
+panel_iframe:
+  nonna:
+    title: Casa Nonna
+    icon: mdi:face-outline
+    url: !secret casanonna
+
+
+# HTML5 
+notify:
+  - platform: html5
+    name: html
+    vapid_pub_key: !secret html5_pub_key
+    vapid_prv_key: !secret html5_prv_key
+    vapid_email: !secret html5_email
+
+
+# Google Calendar
+google:
+  client_id: !secret calendar_client_id
+  client_secret: !secret calendar_client_secret
+
+
+# Google assistant project
+google_assistant:
+  project_id: !secret project_id
+  api_key: !secret api_key
+
+
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say
+    language: 'it'
+
+
+# SMARTLIFE
+tuya:
+  username: !secret tuya_name 
+  password: !secret tuya_psw 
+  country_code: 39
+  platform: smart_life
+
+
+# EWELINK SONOFF
+sonoff:
+  username: !secret sonoff_name
+  password: !secret sonoff_password
+  scan_interval : 3 
+  grace_period : 600
+  api_region: 'eu'
+
+
+# IFTTT
+ifttt:
+ key: iftt_key
+
+
+# MQTT
+mqtt:
+  broker: core-mosquitto
+  port: 1883
+  username: !secret mqtt_admin
+  password: !secret mqtt_psw
+
+
+# Smartir
+smartir:
+  update_branch: rc
+
+
+# Speed-test
+speedtestdotnet:
+  scan_interval:
+    minutes: 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+
+# Hacs
+hacs:
+  token: !secret hacs_token
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+##########
+##########
+#––––––––#

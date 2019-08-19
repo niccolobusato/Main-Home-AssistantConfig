@@ -1,0 +1,92 @@
+#######################################################
+######################## mqtt #########################
+#######################################################
+    # mqtt camera yi 
+    - platform: mqtt
+      state_topic: "yicam/motion"
+      name: "yicam_camera"
+      payload_on: "motion_start"
+      payload_off: "motion_stop"
+      device_class: motion
+    # mqtt
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Porta Camera'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: '0ECA0A'
+      payload_off: '0ECA0E'
+      device_class: door
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Porta Armadio'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: '12B40A'
+      payload_off: '12B40E'
+      device_class: door
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Festra Divano'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: '0F240A'
+      payload_off: '0F240E'
+      device_class: window
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Festra Centrale'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: '32940A'
+      payload_off: '32940E'
+      device_class: window
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Pir Esterno'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: '303D5C'
+      payload_off: '303D5E'
+      device_class: motion
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Pir Garage'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: 'E76BBE'
+      payload_off: 'E76BBC'
+      device_class: motion
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Finestra Letto'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: '1BDD0A'
+      payload_off: '1BDD0E'
+      device_class: window
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Porta delle Scale'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: '33230A'
+      payload_off: '33230E'
+      device_class: door
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Campanello'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: '810532'
+      payload_off: '810533'
+      qos: 1
+#######################################################
+###################### template #######################
+############## used for dashboard config ##############
+#######################################################
+    - platform: template
+      sensors:
+        cucina:
+           value_template: "{{ is_state('light.koogeek_socket_a27269', 'on') }}"
+        vetrina:
+           value_template: "{{ is_state('switch.sonoff_10003eff18', 'on') }}"

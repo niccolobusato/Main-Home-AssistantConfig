@@ -1,0 +1,13 @@
+# Living room
+  - platform: smartir
+    name: Living room TV
+    unique_id: living_room_tv
+    device_code: 1002
+    controller_data: 192.168.1.28
+    power_sensor: media_player.tv_soggiorno_ue40d6100
+# Projector
+  - platform: smartir
+    name: THIS
+    unique_id: this_proiettore
+    device_code: 1000
+    controller_data: 192.168.1.25

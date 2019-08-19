@@ -1,0 +1,21 @@
+#broadlink
+  - platform: broadlink
+    host: 192.168.1.28
+    mac: 'C8:F7:42:16:EC:AD'
+    type: rm_mini
+  - platform: broadlink
+    host: 192.168.1.48
+    mac: 'F6:F2:6D:17:4C:15'
+    type: rm_mini
+  - platform: broadlink
+    host: 192.168.1.25
+    mac: "F6:F2:6D:48:2A:37"
+    type: rm_mini
+  - platform: template
+    switches:
+     clima:
+       value_template: "{{ is_state('climate.mitsubishi', 'cool') }}"
+       turn_on:
+         service: script.1560958978788
+       turn_off:
+         service: script.1560959209603
