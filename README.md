@@ -9,7 +9,7 @@ Currently running two Hass.io instances, the main one is showed below but you ca
 ## Main View On Desktop 💻
 ![HA Main Tab](https://niccolobusato.it/Github/Images/HA-Master/2.png)
 ### Resume Tab - Main View On Desktop
-![HA Resume Tab](https://niccolobusato.it/Github/Images/HA-Master/3.png)
+![HA Resume Tab](https://niccolobusato.it/Github/Images/HA-Master/3_v2.png)
 ### Audio Video Tab - Main View On Desktop
 ![HA Audio-Video Tab](https://niccolobusato.it/Github/Images/HA-Master/4.png)
 ### Master Bedroom Tab - Main View On Desktop
@@ -47,6 +47,15 @@ Unofficial Addon/Plugin/Custom-Card store for HA that you should <a href="https:
 
 #### Life360 
 The best device traker for android (for my case) <i>(it became an official integration recently)</i> and you can now find it <a href="https://www.home-assistant.io/components/life360/">here</a>.
+
+#### Tuya/Smart-Life
+Add support to devices with official <a href="https://www.home-assistant.io/components/tuya/">tuya</a> firmware.
+
+#### Sonoff Official Firmware (Custom Component)
+Add support to devices with official <a href="https://github.com/peterbuga/HASS-sonoff-ewelink">eWelink</a> firmware.
+
+#### SmartIR (Custom Component)
+Add support to broadlink devices with official <a href="https://github.com/smartHomeHub/SmartIR">Broadlink</a> firmware.
 
 # Addons
 
