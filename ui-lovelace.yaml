@@ -1,0 +1,564 @@
+cch:
+  exceptions:
+    - conditions:
+        user: niccolo
+        user_agent: Mobile
+      config:
+        clock_format: '12'
+        date_locale: it
+        default_tab: '3'
+        hide_tabs: '4'
+        menu: hide
+        notifications: show
+        options: clock
+        show_tabs: []
+        voice: hide
+    - conditions:
+        user: christina
+      config:
+        clock_format: '12'
+        date_locale: it
+        default_tab: '2'
+        disable_sidebar: true
+        hide_config: true
+        hide_help: true
+        hide_tabs: '4'
+        hide_unused: true
+        menu: hide
+        notifications: show
+        options: clock
+        show_tabs: []
+        voice: hide
+    - conditions:
+        user: annalisa
+      config:
+        clock_format: '12'
+        date_locale: it
+        default_tab: []
+        hide_tabs: '3,4'
+        menu: hide
+        notifications: show
+        options: clock
+        show_tabs: []
+        swipe: false
+        swipe_amount: '15'
+        swipe_animate: none
+        voice: hide
+    - conditions:
+        user: ele
+      config:
+        clock_format: '12'
+        date_locale: it
+        default_tab: []
+        disable_sidebar: true
+        hide_config: true
+        hide_help: true
+        hide_tabs: '3,4'
+        hide_unused: true
+        kiosk_mode: false
+        menu: hide
+        notifications: show
+        options: clock
+        show_tabs: []
+        swipe: true
+        swipe_amount: '15'
+        swipe_animate: none
+        voice: hide
+  options: clock
+  swipe: true
+  voice: hide
+resources:
+  - type: module
+    url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+  - type: module
+    url: /community_plugin/mini-media-player/mini-media-player-bundle.js
+  - type: module
+    url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
+  - type: module
+    url: /community_plugin/atomic_calendar/atomic_calendar.js
+  - type: module
+    url: /community_plugin/compact-custom-header/compact-custom-header.js
+title: Casa
+views:
+  - badges: []
+    cards:
+      - entities:
+          - entity: device_tracker.life360_claudio
+          - entity: device_tracker.niccolo
+          - entity: device_tracker.life360_annalisa
+            name: Annalisa
+          - entity: device_tracker.life360_eleonora_busato
+        show_icon: true
+        show_name: true
+        show_state: true
+        type: glance
+      - entities:
+          - entity: binary_sensor.porta_delle_scale
+          - entity: binary_sensor.porta_camera
+          - entity: switch.clima
+        show_icon: true
+        show_name: true
+        show_state: true
+        type: glance
+      - cards:
+          - entity: light.06200231b4e62d1f2741
+            name: Entrata
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: light.78841158840d8ea0baf5
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: light.60707618ecfabc23078c
+            tap_action:
+              action: toggle
+            type: entity-button
+        type: horizontal-stack
+      - cards:
+          - entity: switch.sonoff_10003eff18
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: light.koogeek_socket_a27269
+            icon: 'mdi:ceiling-light'
+            name: Cucina
+            tap_action:
+              action: toggle
+            type: entity-button
+        type: horizontal-stack
+      - camera_image: camera.foscam_camera
+        entities:
+          - camera.foscam_camera
+          - binary_sensor.pir_esterno
+          - automation.test_ir_sensor
+        title: Esterno
+        type: picture-glance
+      - camera_image: camera.camera_niccolo
+        entities:
+          - camera.camera_niccolo
+          - binary_sensor.yicam_camera
+          - binary_sensor.campanello
+          - automation.notifica_campanello
+        title: Cancelletto
+        type: picture-glance
+      - camera_image: camera.garage
+        entities:
+          - camera.garage
+          - binary_sensor.pir_garage
+          - automation.movimento_garage_notifica
+        title: Garage
+        type: picture-glance
+      - camera_image: camera.entrata
+        entities:
+          - camera.entrata
+        title: Interno Garage
+        type: picture-glance
+      - artwork: cover
+        entity: media_player.living_room_tv
+        hide:
+          controls: true
+          icon_state: false
+          power_state: false
+          source: false
+          volume: false
+        icon: 'mdi:television'
+        shortcuts:
+          buttons:
+            - icon: 'mdi:arrow-down-bold-box'
+              id: script.
+              type: script
+            - icon: 'mdi:arrow-up-bold-box'
+              id: script.
+              type: script
+        type: 'custom:mini-media-player'
+        volume_stateless: true
+      - artwork: cover
+        entity: media_player.cucina
+        hide:
+          icon_state: false
+          power_state: false
+        icon: 'mdi:speaker'
+        type: 'custom:mini-media-player'
+      - entity: climate.mitsubishi
+        name: Condizionatore
+        type: thermostat
+    icon: 'mdi:home'
+    panel: false
+    path: ''
+    theme: Dark - Green
+    title: Base
+  - badges: []
+    cards:
+      - entities:
+          - entity: device_tracker.life360_claudio
+          - entity: device_tracker.niccolo
+          - entity: device_tracker.life360_annalisa
+            icon: 'mdi:human-female'
+            name: Annalisa
+          - entity: device_tracker.life360_eleonora_busato
+          - entity: binary_sensor.porta_delle_scale
+        type: glance
+      - entities:
+          - entity: light.06200231b4e62d1f2741
+          - entity: light.78841158840d8ea0baf5
+            hide_when_off: true
+            toggle: true
+            type: 'custom:slider-entity-row'
+          - entity: light.60707618ecfabc23078c
+        title: Esterno
+        type: entities
+      - entities:
+          - entity: light.koogeek_socket_a27269
+            name: Cucina
+          - entity: switch.sonoff_10003eff18
+        show_header_toggle: false
+        title: Piano Terra
+        type: entities
+      - dateColor: white
+        dateSize: 90
+        dayWrapperLineColor: grey
+        dimFinishedEvents: true
+        entities:
+          - entity: calendar.spazzatura_paese
+        eventBarColor: grey
+        finishedEventFilter: grayscale(100%)
+        finishedEventOpacity: 0.6
+        fullDayEventText: Tutto il giorno
+        locationIconColor: red
+        locationLinkColor: grey
+        locationTextSize: 90
+        maxDaysToShow: 7
+        progressBarColor: grey
+        showColors: false
+        showCurrentEventLine: false
+        showLocation: false
+        showMonth: false
+        showProgressBar: true
+        timeColor: white
+        timeSize: 90
+        title: Raccolta differenziata
+        titleColor: white
+        titleSize: 100
+        type: 'custom:atomic-calendar'
+        untilText: Until
+      - entities:
+          - entity: device_tracker.niccolo
+          - entity: device_tracker.life360_claudio
+          - entity: device_tracker.annalisa
+          - entity: zone.casa_christina
+          - entity: zone.home
+          - entity: zone.work
+          - entity: zone.bar
+          - entity: device_tracker.life360_eleonora_busato
+        type: map
+      - cards:
+          - entities:
+              - entity: sensor.dark_sky_temperature
+            name: Temperatura Esterno
+            show:
+              graph: false
+              points: true
+            type: 'custom:mini-graph-card'
+          - entities:
+              - entity: sensor.dark_sky_humidity
+            line_color: blue
+            name: Umidità Esterno
+            show:
+              graph: false
+              points: true
+            type: 'custom:mini-graph-card'
+        type: horizontal-stack
+      - title: Lista della spesa
+        type: shopping-list
+      - entities:
+          - entity: binary_sensor.campanello
+            secondary_info: last-changed
+          - entity: automation.notifica_campanello
+          - entity: automation.suoneria_campanello
+        title: Campanello
+        type: entities
+    icon: 'mdi:castle'
+    title: info
+  - badges: []
+    cards:
+      - cards:
+          - artwork: cover
+            entity: media_player.this
+            hide:
+              controls: true
+              icon_state: false
+              power_state: false
+              source: false
+              volume: false
+            icon: 'mdi:circle'
+            shortcuts:
+              buttons:
+                - icon: 'mdi:television'
+                  id: script.1557163038573
+                  type: script
+                - icon: 'mdi:speaker'
+                  id: script.1557163646134
+                  type: script
+                - icon: 'mdi:projector'
+                  id: script.1557163221760
+                  type: script
+                - icon: 'mdi:exit-run'
+                  id: script.1557163702798
+                  type: script
+                - icon: 'mdi:video-input-svideo'
+                  id: script.1557163747350
+                  type: script
+                - icon: 'mdi:equal'
+                  id: script.1557163799020
+                  type: script
+              columns: 3
+            type: 'custom:mini-media-player'
+            volume_stateless: true
+          - artwork: cover
+            entity: media_player.living_room_tv
+            hide:
+              controls: true
+              icon_state: false
+              power_state: false
+              source: false
+              volume: false
+            icon: 'mdi:television'
+            shortcuts:
+              buttons:
+                - icon: 'mdi:arrow-down-bold-box'
+                  id: script.
+                  type: script
+                - icon: 'mdi:arrow-up-bold-box'
+                  id: script.
+                  type: script
+            type: 'custom:mini-media-player'
+            volume_stateless: true
+          - artwork: cover
+            entity: media_player.spotify
+            hide:
+              controls: true
+              icon: true
+              icon_state: false
+              power: true
+              power_state: true
+              source: true
+              volume: true
+            icon: 'mdi:television'
+            type: 'custom:mini-media-player'
+            volume_stateless: true
+          - entities:
+              - artwork: cover
+                entity: media_player.stereo
+                group: true
+                hide:
+                  icon_state: false
+                  power_state: false
+                icon: 'mdi:speaker'
+                info: short
+                shortcuts:
+                  buttons:
+                    - icon: 'mdi:volume-minus'
+                      id: script.1557163995379
+                      type: script
+                    - icon: 'mdi:volume-mute'
+                      id: script.1557164051114
+                      type: script
+                    - icon: 'mdi:volume-plus'
+                      id: script.1557163940136
+                      type: script
+                  columns: 3
+                source: icon
+                type: 'custom:mini-media-player'
+              - artwork: cover
+                entity: media_player.cucina
+                group: true
+                hide:
+                  icon_state: false
+                  power_state: false
+                icon: 'mdi:speaker'
+                type: 'custom:mini-media-player'
+              - artwork: cover
+                entity: media_player.camera
+                group: true
+                hide:
+                  icon_state: false
+                  power_state: false
+                icon: 'mdi:speaker'
+                type: 'custom:mini-media-player'
+              - entity: media_player.proiettore
+                group: true
+                hide:
+                  icon_state: false
+                  power_state: false
+                icon: 'mdi:google-chrome'
+                type: 'custom:mini-media-player'
+              - artwork: full-cover
+                entity: media_player.salotto
+                group: true
+                hide:
+                  icon_state: false
+                  power_state: false
+                icon: 'mdi:google-chrome'
+                type: 'custom:mini-media-player'
+              - artwork: full-cover
+                entity: media_player.tutte
+                group: true
+                hide:
+                  icon_state: false
+                  power_state: false
+                icon: 'mdi:speaker'
+                type: 'custom:mini-media-player'
+              - artwork: full-cover
+                entity: media_player.alto
+                group: true
+                hide:
+                  icon_state: false
+                  power_state: false
+                icon: 'mdi:speaker'
+                type: 'custom:mini-media-player'
+            type: entities
+        type: vertical-stack
+    icon: 'mdi:radio'
+    panel: false
+    title: media 2
+  - badges: []
+    cards:
+      - entities:
+          - entity: light.scrivania
+          - entity: light.02200466b4e62d07bd0c
+          - entity: light.0220046668c63aaf5b32
+          - entity: light.principale
+          - entity: switch.sonoff_10003eff4b
+        show_header_toggle: true
+        title: Camera
+        type: entities
+      - entity: climate.mitsubishi
+        type: thermostat
+      - cards:
+          - entities:
+              - sensor.temperatura_camera
+            show:
+              graph: bar
+              points: true
+            type: 'custom:mini-graph-card'
+          - entities:
+              - sensor.umidita_camera
+            line_color: blue
+            show:
+              points: true
+            type: 'custom:mini-graph-card'
+        type: horizontal-stack
+      - cards:
+          - entities:
+              - entity: zone.casa_christina
+              - entity: device_tracker.niccolo
+              - entity: device_tracker.christina
+            type: map
+          - entities:
+              - entity: device_tracker.christina
+              - entity: device_tracker.niccolo
+            type: entities
+        type: vertical-stack
+      - cards:
+          - entities:
+              - entity: binary_sensor.porta_camera
+              - entity: binary_sensor.finestra_letto
+              - entity: binary_sensor.festra_centrale
+              - entity: binary_sensor.festra_divano
+              - entity: binary_sensor.porta_armadio
+                show_header_toggle: false
+            type: entities
+          - entities:
+              - entity: sensor.niccolo_battery_level
+                name: iPhone di Niccolò
+              - entity: sensor.niccolo_battery_state
+                name: Stato iPhone di Niccolò
+                show_header_toggle: false
+            type: entities
+        type: vertical-stack
+      - entities:
+          - entity: switch.sonoff_10003ecc07
+            name: MagicMirror²
+        type: entities
+      - cards:
+          - entity: script.1558995809554
+            icon: 'mdi:heart-circle'
+            name: Miss u Machine (Christina)
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: script.1559028143583
+            icon: 'mdi:heart-circle-outline'
+            name: Miss u Machine (Niccolò)
+            tap_action:
+              action: toggle
+            type: entity-button
+        type: horizontal-stack
+      - camera_image: camera.iphone4_camera_niccolo
+        entities:
+          - camera.iphone4_camera_niccolo
+          - device_tracker.niccolo
+        title: Camera Niccolò
+        type: picture-glance
+    icon: 'mdi:alien'
+    path: ''
+    title: Camera Niccolò
+  - badges: []
+    cards:
+      - entities:
+          - entity: sensor.speedtest_download
+          - entity: sensor.speedtest_ping
+          - entity: sensor.speedtest_upload
+        type: entities
+      - entities:
+          - entity: sensor.snapshot_backup
+          - entity: binary_sensor.snapshots_stale
+          - entity: updater.updater
+          - entity: sensor.hacs
+          - entity: sensor.home_assistant_v2_db
+        type: entities
+      - entities:
+          - entity: device_tracker.eleonora_busato
+          - entity: device_tracker.life360_eleonora_busato
+          - entity: sensor.batteria_eleonora
+          - entity: sensor.passi_eleonora
+          - entity: sensor.schermo_eleonora
+          - entity: sensor.stato_chiamata_eleonora
+          - entity: sensor.wi_fi_eleonora
+        show_header_toggle: false
+        title: Eleonora
+        type: entities
+      - entities:
+          - entity: device_tracker.niccolo
+          - entity: sensor.geocoded_location_3
+          - entity: sensor.activity_2
+          - entity: sensor.average_active_pace_2
+          - entity: sensor.distance_2
+          - entity: sensor.floors_ascended_2
+          - entity: sensor.floors_descended_2
+          - entity: sensor.steps_2
+          - entity: sensor.bssid_3
+          - entity: sensor.ssid_3
+          - entity: sensor.connection_type_3
+          - entity: sensor.battery_level_3
+          - entity: sensor.battery_state_3
+          - entity: sensor.last_update_trigger_3
+          - entity: sensor.sim_1_3
+        show_header_toggle: false
+        title: Niccolò
+        type: entities
+      - entities:
+          - entity: device_tracker.life360_claudio
+          - entity: device_tracker.claudio_2
+          - entity: device_tracker.claudio
+          - entity: sensor.batteria_claudio
+          - entity: sensor.passi_claudio
+          - entity: sensor.schermo_claudio
+          - entity: sensor.stato_chiamata_claudio
+          - entity: sensor.wi_fi_claudio
+        show_header_toggle: false
+        title: Claudio
+        type: entities
+    icon: 'mdi:server'
+    title: Sistema
