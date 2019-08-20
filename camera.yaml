@@ -2,15 +2,20 @@
   - platform: ffmpeg
     input: 'http://192.168.1.97:14511/videostream.cgi?user=admin&pwd=88888888'
     name: Entrata
-#yicam
+# yicam
   - platform: ffmpeg
     input: 'rtsp://192.168.1.125/ch0_1.h264'
-    name: Camera Niccolò
-#iphone4
+    name: Camera Niccolò  
+ ### same camera but image cropped with "extra_aurguments"
+  - platform: ffmpeg
+    input: 'rtsp://192.168.1.125/ch0_1.h264'
+    name: Cancelletto Crop
+    extra_arguments: -vf crop=300:200:110:20
+# iphone4
   - platform: ffmpeg
     input: 'http://192.168.1.112:3218/live'
     name: iPhone4 Camera Niccolò
-#foscam
+# foscam
   - platform: foscam
     ip: 192.168.1.198
     username: !secret foscam_usr_1
