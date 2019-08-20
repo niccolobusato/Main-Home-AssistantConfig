@@ -773,7 +773,7 @@
   condition: []
   action:
   - data:
-      entity_id: camera.camera_niccolo
+      entity_id: camera.cancelleto_crop
       filename: /config/www/cancelletto.jpg
     service: camera.snapshot
   - delay: '2'
