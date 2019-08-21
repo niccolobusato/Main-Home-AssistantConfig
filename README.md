@@ -2,7 +2,7 @@
 
 Hass.io running on Proxmox VE. </br>
 4GB of Ram, 1 Socket & 2 Cores on an old HP Thin Client t610 📠. </br>
-Currently running two Hass.io instances, the main one is showed below but you can find here the secondary here.
+Currently running two Hass.io instances, the main one is showed below but you can find here the secondary <a href="https://github.com/niccolobusato/Dashboard-Home-AssistantConfig">here</a>.
 </br> </br>
 
 
