@@ -1,0 +1,50 @@
+# Google assistant project
+  project_id: !secret project_id
+  api_key: !secret api_key
+  exposed_domains:
+    - switch
+    - climate
+    - light
+  entity_config:
+    group.all_automations:
+      expose: false
+    group.all_devices:
+      expose: false
+    group.all_lights:
+      expose: false
+    group.all_scripts:
+      expose: false
+    group.all_switches:
+      expose: false
+    light.koogeek_socket_a27269:
+      expose: true
+      name: Cucina
+    switch.sonoff_10003ecc07:
+      expose: true
+      name: Specchio
+    light.vetrina_gh:
+      expose: true
+      name: Vetrina
+    light.armadio_gh:
+      expose: true
+      name: Armadio
+    switch.sonoff_10003eff18:
+      expose: false
+    switch.sonoff_10003eff4b:
+      expose: false
+    switch.clima:
+      expose: false
+    switch.adguard_filtering:
+      expose: false
+    switch.adguard_parental_control:
+      expose: false
+    switch.adguard_protection:
+      expose: false
+    switch.adguard_query_log:
+      expose: false
+    switch.adguard_safe_browsing:
+      expose: false
+    switch.adguard_safe_search:
+      expose: false
+
+###### bye ######
