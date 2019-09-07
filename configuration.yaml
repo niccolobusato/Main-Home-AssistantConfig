@@ -39,6 +39,7 @@ group: !include group.yaml
 climate: !include climate.yaml
 media_player: !include media_player.yaml
 switch: !include switch.yaml
+google_assistant: !include google_assistant_project.yaml
 
 
 # SSL
@@ -70,12 +71,6 @@ notify:
 google:
   client_id: !secret calendar_client_id
   client_secret: !secret calendar_client_secret
-
-
-# Google assistant project
-google_assistant:
-  project_id: !secret project_id
-  api_key: !secret api_key
 
 
 # Text to speech
