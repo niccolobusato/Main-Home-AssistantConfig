@@ -25,3 +25,30 @@
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
+#######################################################
+########### light template for google home ############
+#######################################################
+  - platform: template
+    lights:
+     armadio_gh:
+       value_template: "{{ is_state('switch.sonoff_10003eff4b', 'on') }}"
+       turn_on:
+         service: switch.turn_on
+         data:
+            entity_id: switch.sonoff_10003eff4b
+       turn_off:
+         service: switch.turn_off
+         data:
+            entity_id: switch.sonoff_10003eff4b
+  - platform: template
+    lights:
+     vetrina_gh:
+       value_template: "{{ is_state('switch.sonoff_10003eff18', 'on') }}"
+       turn_on:
+         service: switch.turn_on
+         data:
+            entity_id: switch.sonoff_10003eff18
+       turn_off:
+         service: switch.turn_off
+         data:
+            entity_id: switch.sonoff_10003eff18
