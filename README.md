@@ -65,6 +65,9 @@ Add support to broadlink devices with official <a href="https://github.com/smart
 #### Aircast
 AirPlay capabilities for your Chromecast devices.. Visit <a href="https://github.com/hassio-addons/addon-aircast">AirCast</a> page for details.
 
+#### AdGuard Home
+Network-wide ads & trackers blocking DNS server. Visit <a href="https://github.com/hassio-addons/addon-adguard-home">AirCast</a> page for details.
+
 #### Configurator
 Browser-based configuration file editor for Home Assistant.. Visit <a href="https://home-assistant.io/addons/configurator">Configurator</a> page for details.
 
