@@ -40,6 +40,7 @@ climate: !include climate.yaml
 media_player: !include media_player.yaml
 switch: !include switch.yaml
 google_assistant: !include google_assistant_project.yaml
+logger: !include logger.yaml
 
 
 # SSL
