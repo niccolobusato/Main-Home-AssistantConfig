@@ -130,6 +130,19 @@ speedtestdotnet:
 hacs:
   token: !secret hacs_token
 
+# hass-browser_mod https://github.com/thomasloven/hass-browser_mod
+browser_mod:
+  devices:
+    2c1ee84d-cbbcdff7:
+      name: Macbook_Niccolo
+    d8b99e00-05c566c1:
+      name: App_Niccolo
+
+# favicon https://github.com/thomasloven/hass-favicon
+favicon:
+  title: Casa
+  favicon: /local/favicon/favicon.ico
+
 # Checks for available updates
 # Note: This component will send some information about your system to
 # the developers to assist with development of Home Assistant.
