@@ -5,7 +5,7 @@ Hass.io running on Proxmox VE. </br>
 Currently running two Hass.io instances, the main one is showed below but you can find here the secondary <a href="https://github.com/niccolobusato/Dashboard-Home-AssistantConfig">here</a>.
 </br> </br>
 
-### Current version: 0.99.0 🥳
+### Current version: 0.99.2 🥳
 
 
 ## Main View On Desktop 💻
