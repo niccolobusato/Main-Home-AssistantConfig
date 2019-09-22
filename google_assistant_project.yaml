@@ -2,7 +2,6 @@
   project_id: !secret project_id
   api_key: !secret api_key
   exposed_domains:
-    - switch
     - climate
     - light
   entity_config:
@@ -28,23 +27,11 @@
     light.armadio_gh:
       expose: true
       name: Armadio
-    switch.sonoff_10003eff18:
-      expose: false
-    switch.sonoff_10003eff4b:
-      expose: false
-    switch.clima:
-      expose: false
-    switch.adguard_filtering:
-      expose: false
-    switch.adguard_parental_control:
-      expose: false
-    switch.adguard_protection:
-      expose: false
-    switch.adguard_query_log:
-      expose: false
-    switch.adguard_safe_browsing:
-      expose: false
-    switch.adguard_safe_search:
-      expose: false
+    switch.0830605384f3eb793a33_3:
+      expose: true
+      name: Dashboard Camera
+    switch.0830605384f3eb793a33_7:
+      expose: true
+      name: USB
 
 ###### bye ######
