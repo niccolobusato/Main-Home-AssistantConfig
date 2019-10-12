@@ -97,3 +97,30 @@ Unofficial Addon/Plugin/Custom-Card <a href="https://hacs.netlify.com/">store</a
 #### Hass.io Google Drive Backup
 Automatically back up Hass.io snapshots to Google Drive. Visit <a href="https://github.com/sabeechen/hassio-google-drive-backup">Hass.io Google Drive Backup</a> page for details.
 
+## What i use
+| Item  | Number  | Type              |
+| ------- | ----------- | ------------------------------------ |
+| HP Thin Client t610  | 1  | Server   |
+| Router Asus RT-AC68U (Black)    | 1  | Network & Connectivity   |
+| Repeater TP-LINK AC750      | 1 | Network & Connectivity |
+| ConBee II ZigBee    | 1     | Network & Connectivity|
+| Broadlink RM mini 3 | 3     | Network & Connectivity |
+| Sonoff Bridge  | 1 | Network & Connectivity |
+| iPad Mini v.1 (Dashboard) | 1 | Network & Connectivity |
+| Fire HD 8" (Dashboard) | 1 | Network & Connectivity |
+| Foscam C1 V2    | 2     | Security |
+| Yi Cam (Black)   | 1     | Security |
+| Cheap RTSP-Only Camera   | 1     | Security |
+| Tuya Bulbs (RGB+W)  | 5     | Light |
+| Koogeek Smart Light Socket | 1 | Light |
+| Tuya Led Strip  | 1     | Light |
+| Sonoff | 10     | Light / Switch |
+| Tuya Power Strip  | 1     | Switch + USB Ports |
+| Samsung SmartTV | 1 | Audio-Video System |
+| Google Home Mini | 4 | Audio-Video System |
+| Chromecast Audio | 2 | Audio-Video System |
+| Chromecast | 1 | Audio-Video System |
+| Sonoff PIR | 6 | Sensor |
+| Door-Window Sensor | 11 | Sensor |
+| Xiaomi Zigbee Temp-Hum sensor | 1 | Sensor |
+| Xiaomi Bluetooth Temp-Hum sensor | 3 | Sensor |
