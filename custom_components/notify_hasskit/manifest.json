@@ -1,0 +1,8 @@
+{
+"domain": "notify_hasskit",
+"name": "notify_hasskit",
+"documentation": "https://github.com/tuanha2000vn/hasskit",
+"dependencies": [],
+"codeowners": ["exlab"],
+"requirements": []
+}

@@ -9,8 +9,6 @@ frontend:
   themes: !include themes.yaml
 # Health
 system_health:
-# Enables a map showing the location of tracked devices
-map:
 # Enables configuration UI
 config:
 # Track the sun
@@ -19,8 +17,6 @@ sun:
 ffmpeg:
 # stream
 stream:
-# History
-history:
 # Cloud
 cloud:
 # Mobile app
@@ -39,6 +35,32 @@ group: !include group.yaml
 climate: !include climate.yaml
 media_player: !include media_player.yaml
 switch: !include switch.yaml
+input_number: !include input_number.yaml
+google_assistant: !include google_assistant_project.yaml
+logger: !include logger.yaml
+homekit: !include homekit.yaml
+browser_mod: !include browser_mod.yaml
+input_select: !include input_select.yaml
+notify: !include notify.yaml
+vacuum: !include vacuum.yaml
+samsungtv: !include samsung-tv.yaml
+
+
+# wol
+wake_on_lan:
+
+
+# shell_command
+shell_command:
+ reboot_yicamera: curl http://192.168.1.125/cgi-bin/reboot.sh
+
+
+# counter
+counter:
+  volume_stereo:
+    step: 1
+    minimum: 0
+    maximum: 40
 
 
 # SSL
@@ -46,24 +68,7 @@ http:
    base_url: !secret duckdns
    ssl_certificate: /ssl/fullchain.pem
    ssl_key: /ssl/privkey.pem
-   api_password: !secret http_password
-
-
-# i-frame
-panel_iframe:
-  nonna:
-    title: Casa Nonna
-    icon: mdi:face-outline
-    url: !secret casanonna
-
-
-# HTML5 
-notify:
-  - platform: html5
-    name: html
-    vapid_pub_key: !secret html5_pub_key
-    vapid_prv_key: !secret html5_prv_key
-    vapid_email: !secret html5_email
+   #api_password: !secret http_password
 
 
 # Google Calendar
@@ -72,17 +77,12 @@ google:
   client_secret: !secret calendar_client_secret
 
 
-# Google assistant project
-google_assistant:
-  project_id: !secret project_id
-  api_key: !secret api_key
-
-
 # Text to speech
 tts:
   - platform: google_translate
     service_name: google_say
     language: 'it'
+    cache: false
 
 
 # SMARTLIFE
@@ -103,8 +103,8 @@ sonoff:
 
 
 # IFTTT
-ifttt:
- key: iftt_key
+#ifttt:
+# key: !secret iftt_key
 
 
 # MQTT
@@ -133,6 +133,19 @@ speedtestdotnet:
 # Hacs
 hacs:
   token: !secret hacs_token
+
+
+# favicon https://github.com/thomasloven/hass-favicon
+favicon:
+  title: Casa
+  icon_path: /local/favicon/
+
+
+# HassKit
+notify_hasskit:
+  token:
+    - !secret hasskit_token
+
 
 # Checks for available updates
 # Note: This component will send some information about your system to

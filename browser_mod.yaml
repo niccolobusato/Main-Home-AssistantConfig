@@ -1,0 +1,12 @@
+# hass-browser_mod https://github.com/thomasloven/hass-browser_mod
+  devices:
+    2c1ee84d-cbbcdff7:
+      name: Macbook_Niccolo
+    9951de19-55bb8da7:
+      name: App_Niccolo
+    85282bd6-433bb07c:
+      name: DashboardCamera
+      camera: true
+    f8a52df1-6d20d94f:
+      name: Kiosk
+      camera: true

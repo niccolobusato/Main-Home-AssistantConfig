@@ -1,14 +1,4 @@
   - platform: yr
-  - platform: darksky
-    api_key: 184aef709d5f1b263ab10292f31850e3
-    language: it
-    monitored_conditions:
-      - summary
-      - icon
-      - precip_intensity
-      - precip_probability
-      - temperature
-      - humidity
 #######################################################
 ######################## Mqtt #########################
 #######################################################
@@ -104,6 +94,29 @@
     state_topic: "homeassistant/sensor/android_claudio_screen/attributes"
     value_template: "{{ value_json.state }}"
     json_attributes_topic: "homeassistant/sensor/android_claudio_screen/attributes"
+#######################################################
+#################### waze time to #####################
+#######################################################
+  - platform: waze_travel_time
+    name: Time to Work
+    origin: Home
+    destination: Lavoro
+    region: 'EU'
+#######################################################
+#################### Anniversary ######################
+#######################################################
+  - platform: anniversaries
+    name: Compleanno Niccolò
+    date: !secret compleannon 
+  - platform: anniversaries
+    name: Compleanno Claudio
+    date: !secret compleannoc 
+  - platform: anniversaries
+    name: Compleanno Annalisa
+    date: !secret compleannoa
+  - platform: anniversaries
+    name: Compleanno Eleonora
+    date: !secret compleannoe
 #######################################################
 #################### goodbye baby! ####################
 #######################################################

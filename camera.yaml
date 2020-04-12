@@ -6,6 +6,10 @@
   - platform: ffmpeg
     input: 'rtsp://192.168.1.125/ch0_1.h264'
     name: Camera Niccolò
+  - platform: ffmpeg
+    input: 'rtsp://192.168.1.125/ch0_1.h264'
+    name: Cancelletto Crop
+    extra_arguments: -vf crop=300:200:110:20
 #iphone4
   - platform: ffmpeg
     input: 'http://192.168.1.112:3218/live'

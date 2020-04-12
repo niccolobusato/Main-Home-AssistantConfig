@@ -1,0 +1,24 @@
+  - platform: mqtt
+    name: "ROBOT Aspirapolvere"
+    schema: state
+    supported_features:
+      - start
+      - stop
+    command_topic: "vacuum/command"
+    state_topic: "vacuum/state"
+    
+  - platform: mqtt
+    name: "ROBOT Aspirapolvere Nero"
+    schema: state
+    supported_features:
+      - start
+      - stop
+      - return_home
+      - clean_spot
+      - fan_speed
+    set_fan_speed_topic: "vacuum1/set_fan_speed"
+    fan_speed_list:
+      - min
+      - max
+    command_topic: "vacuum1/command"
+    state_topic: "vacuum1/state"

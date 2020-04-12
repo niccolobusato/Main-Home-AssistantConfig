@@ -1,0 +1,7 @@
+# Samsung
+  - host: 192.168.1.56
+    name: tv_soggiorno_ue40d6100
+    turn_on_action:
+      - service: wake_on_lan.send_magic_packet
+        data:
+          mac: "60:6b:bd:a9:17:cb"

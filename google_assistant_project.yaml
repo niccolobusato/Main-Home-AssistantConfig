@@ -1,0 +1,37 @@
+# Google assistant project
+  project_id: !secret project_id
+  service_account: !include HassioAssistant2-52102ed2b8d6.json
+  exposed_domains:
+    - climate
+    - light
+  entity_config:
+    group.all_automations:
+      expose: false
+    group.all_devices:
+      expose: false
+    group.all_lights:
+      expose: false
+    group.all_scripts:
+      expose: false
+    group.all_switches:
+      expose: false
+    light.koogeek_socket_a27269:
+      expose: true
+      name: Cucina
+    switch.sonoff_10003ecc07:
+      expose: true
+      name: Specchio
+    light.vetrina_gh:
+      expose: true
+      name: Vetrina
+    light.armadio_gh:
+      expose: true
+      name: Armadio
+    light.scrivania:
+       name: Luce Televisione
+    light.02200466b4e62d07bd0c:
+       name: Letto
+    light.0220046668c63aaf5b32:
+       name: Scrivania
+
+###### bye ######

@@ -61,8 +61,8 @@
       state_topic: "tele/bridge/RESULT"
       name: 'Finestra Letto'
       value_template: '{{value_json.RfReceived.Data}}'
-      payload_on: '1BDD0A'
-      payload_off: '1BDD0E'
+      payload_on: '3EDA0A'
+      payload_off: '3EDA0E'
       device_class: window
       qos: 1
     - platform: mqtt
@@ -80,6 +80,77 @@
       payload_on: '810532'
       payload_off: '810533'
       qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Letto'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: 'BCEDA9'
+      payload_off: 'BCEDA1'
+      qos: 1
+    # mqtt bedroom remote
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Tasto 1'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: 'C97E28'
+      payload_off: 'f97E2C'
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Tasto 2'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: 'C97E2C'
+      payload_off: 'f97E2C'
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Tasto 3'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: 'C97E24'
+      payload_off: 'f97E24'
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Tasto 4'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: 'C97E29'
+      payload_off: 'f97E29'
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Tasto 5'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: 'C97E22'
+      payload_off: 'f97E22'
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Tasto 6'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: 'C97E25'
+      payload_off: 'f97E25'
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Tasto 7'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: 'C97E21'
+      payload_off: 'f97E21'
+      qos: 1
+    - platform: mqtt
+      state_topic: "tele/bridge/RESULT"
+      name: 'Tasto 8'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: 'C97E23'
+      payload_off: 'f97E23'
+      qos: 1
+    - platform: mqtt
+      state_topic: "stripled/state"
+      name: 'strip_led'
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: 'acceso'
+      payload_off: 'spento'
+      qos: 1
 #######################################################
 ###################### template #######################
 ############## used for dashboard config ##############
@@ -90,3 +161,4 @@
            value_template: "{{ is_state('light.koogeek_socket_a27269', 'on') }}"
         vetrina:
            value_template: "{{ is_state('switch.sonoff_10003eff18', 'on') }}"
+##

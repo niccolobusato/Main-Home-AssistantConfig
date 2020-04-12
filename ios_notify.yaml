@@ -40,3 +40,57 @@
             authenticationRequired: false
             destructive: true
             behavior: 'default'
+#######################################################
+########### Front yard motion notification ############
+#######################################################
+      - name: Notificheentrata
+        identifier: 'entratan'
+        actions:
+          - identifier: 'SENTRATA'
+            title: 'Disattiva notifiche'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: true
+            behavior: 'default'
+#######################################################
+############ garage motion notification ###############
+#######################################################
+      - name: Notificheentrata
+        identifier: 'garagen'
+        actions:
+          - identifier: 'SGARAGE'
+            title: 'Disattiva notifiche'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: true
+            behavior: 'default'
+#######################################################
+############ garage motion notification ###############
+#######################################################
+      - name: notifichearrivo
+        identifier: 'bentornato'
+        actions:
+          - identifier: 'CANCELLETTO'
+            title: 'Apri il cancelletto'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: false
+            behavior: 'default'
+          - identifier: 'CAMPANELLO'
+            title: 'Suona il Campanello'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: false
+            behavior: 'default'
+          - identifier: 'CAMP-CANC'
+            title: 'Campanello + Cancelletto'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: true
+            behavior: 'default'
+          - identifier: 'CLIMABH'
+            title: 'Accendi Clima'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: true
+            behavior: 'default'

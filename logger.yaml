@@ -1,0 +1,3 @@
+  logs:
+    # riduce i messaggi di errore dei binary sensor, li mostrerà solo se succede qualcosa di molto grave
+    homeassistant.components.mqtt.binary_sensor: critical

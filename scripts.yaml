@@ -60,27 +60,13 @@
   sequence:
   - data:
       packet: JgBOAJKVEhMRFBEUERMRORETEhMSExISExITEhEUETgSExITEhITNxI3EzcSNxQ2EhMSEhITERQSExISFBESExE4EjgSNxMABpGUlRI3EwANBQAAAAAAAAAAAAA=
-    service: switch.broadlink_send_packet_192_168_1_25
+    service: broadlink.send
 '1557164053119':
   alias: volume muto stereo
   sequence:
   - data:
       packet: JgBOAJKVEhMRFBEUERMRORETEhMSExISExITEhEUETgSExITEhITNxI3EzcSNxQ2EhMSEhITERQSExISFBESExE4EjgSNxMABpGUlRI3EwANBQAAAAAAAAAAAAA=
     service: switch.broadlink_send_packet_192_168_1_25
-'1558995809554':
-  alias: Trigger Miss u Machine Christina
-  sequence:
-  - data:
-      payload: trigger
-      topic: esp_b_ha
-    service: mqtt.publish
-'1559028143583':
-  alias: Trigger Miss u Machine Niccolo
-  sequence:
-  - data:
-      payload: trigger
-      topic: esp_a_ha
-    service: mqtt.publish
 '1560203064557':
   alias: Attiva tutte le automazioni
   sequence:
@@ -121,3 +107,112 @@
   - data:
       topic: switch/giusyoff
     service: mqtt.publish
+'1567584170668':
+  alias: Aggiorna Info Dashboard
+  sequence:
+  - data:
+      topic: ha/update
+    service: mqtt.publish
+'1567584547286':
+  alias: Ricevi url Dashboard
+  sequence:
+  - data:
+      topic: ha/ngrok
+    service: mqtt.publish
+'1569165441993':
+  alias: Pop-Up Notte
+  sequence:
+  - data:
+      auto_close: true
+      card:
+        cards:
+        - elements:
+          - entity: sensor.time
+            style:
+              color: grey
+              font-size: 20vw
+              font-weight: bold
+              left: 50%
+              top: 47%
+            type: state-label
+          image: /local/black.png
+          type: picture-elements
+        type: vertical-stack
+      deviceID: Kiosk
+      large: true
+      style:
+        --ha-card-background: black
+        --primary-text-color: grey
+        background: black
+        height: 101%
+        width: 105%
+      title: Chiudi
+    service: browser_mod.popup
+'1570461643869':
+  alias: accendi strip
+  sequence:
+  - data:
+      payload: acceso
+      topic: stripled/state
+    service: mqtt.publish
+'1570461711084':
+  alias: spegni strip led
+  sequence:
+  - data:
+      payload: spento
+      topic: stripled/state
+    service: mqtt.publish
+'1574192169006':
+  alias: Nuovo Script
+  sequence:
+  - data:
+      host: 192.168.1.48
+      packet: uHa3Lbh2ty3v6S0dXNAafAAAAAAAAAAAAAAAAA==
+    service: broadlink.send
+'1574192178927':
+  alias: Nuovo Script
+  sequence:
+  - data:
+      host: 192.168.1.48
+      packet: uHa3Lbh2ty3v6S0dXNAafAAAAAAAAAAAAAAAAA==
+    service: broadlink.send
+'1574527157956':
+  alias: Apertura Cancelletto
+  sequence:
+  - data:
+      entity_id: switch.050305515002914a4af5
+    service: switch.turn_on
+  - delay: '1'
+  - data:
+      entity_id: switch.050305515002914a4af5
+    service: switch.turn_on
+'1574970787187':
+  alias: Nuovo Script
+  sequence:
+  - data: {}
+    service: tts.google_say
+'1574977166326':
+  alias: esci popo-mode
+  sequence:
+  - data: {}
+    service: browser_mod.close_popup
+'1584355668016':
+  alias: counter volume su
+  sequence:
+  - entity_id: counter.volume_stereo
+    service: counter.increment
+'1584355701644':
+  alias: counter volume giu
+  sequence:
+  - entity_id: counter.volume_stereo
+    service: counter.decrement
+'1584823619776':
+  alias: Riavvia yi cam
+  sequence:
+  - data: {}
+    service: shell_command.reboot_yicamera
+'1584823615793':
+  alias: Riavvia yi cam
+  sequence:
+  - data: {}
+    service: shell_command.reboot_yicamera

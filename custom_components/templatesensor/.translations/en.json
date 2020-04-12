@@ -1,0 +1,32 @@
+{
+    "config": {
+        "title": "Custom Template Sensor",
+        "step": {
+            "user": {
+                "title": "Custom Template Sensor",
+                "description": "If you need help with the configuration have a look here: https://github.com/custom-components/templatesensor",
+                "data": {
+                    "name": "Name*",
+                    "template": "Template*",
+                    "icon": "Icon",
+                    "unit": "Unit of measurement"
+                }
+            }
+        },
+        "error": {
+            "template": "There was an issue rendering the template."
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {}
+            },
+            "user": {
+                "data": {
+                    "template": "Template*"
+                }
+            }
+        }
+    }
+}

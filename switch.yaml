@@ -14,8 +14,75 @@
   - platform: template
     switches:
      clima:
-       value_template: "{{ is_state('climate.mitsubishi', 'cool') }}"
+       value_template: "{{ is_state('climate.mitsubishi', 'heat') }}"
        turn_on:
          service: script.1560958978788
        turn_off:
          service: script.1560959209603
+########################################################################
+############################ HA-Menu ###################################
+########################################################################
+  - platform: template
+    switches:
+      scrivania:
+        value_template: "{{ is_state('light.0220046668c63aaf5b32', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.0220046668c63aaf5b32
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.0220046668c63aaf5b32
+  - platform: template
+    switches:
+      letto:
+        value_template: "{{ is_state('light.02200466b4e62d07bd0c', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.02200466b4e62d07bd0c
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.02200466b4e62d07bd0c
+  - platform: template
+    switches:
+      cucina:
+        value_template: "{{ is_state('light.koogeek_socket_a27269', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.koogeek_socket_a27269
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.koogeek_socket_a27269
+  - platform: template
+    switches:
+      principale:
+        value_template: "{{ is_state('light.principale', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.principale
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.principale
+  - platform: template
+    switches:
+      televisore:
+        value_template: "{{ is_state('light.scrivania', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.scrivania
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.scrivania
+
+########################################################################
+########################################################################
+########################################################################

@@ -6,3 +6,11 @@
     controller_data: 192.168.1.48
     temperature_sensor: sensor.temperatura_camera
     humidity_sensor: sensor.umidita_camera
+# Mitsubishi Climate Bedroom only heat
+  - platform: smartir
+    name: Riscaldamento
+    unique_id: clim_mits_heat
+    device_code: 1002
+    controller_data: 192.168.1.48
+    temperature_sensor: sensor.temperatura_camera
+    humidity_sensor: sensor.umidita_camera

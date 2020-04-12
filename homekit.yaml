@@ -1,0 +1,31 @@
+  filter:
+    include_domains:
+      - light
+      - media_player
+      - climate
+    include_entities:
+      - switch.sonoff_10003ecc07
+      - switch.0830605384f3eb793a33_3
+      - switch.0830605384f3eb793a33_7
+  entity_config:
+    switch.sonoff_10003ecc07:
+      name: Specchio
+    switch.0830605384f3eb793a33_3:
+      name: Dashboard Camera
+      type: outlet
+    switch.0830605384f3eb793a33_7:
+      name: USB
+      type: outlet
+    media_player.salotto:
+      feature_list:
+        - feature: on_off
+        - feature: play_pause
+        - feature: play_stop
+        - feature: toggle_mute
+    media_player.living_room_tv:
+      feature_list:
+        - feature: on_off
+        - feature: play_pause
+        - feature: play_stop
+        - feature: toggle_mute
+

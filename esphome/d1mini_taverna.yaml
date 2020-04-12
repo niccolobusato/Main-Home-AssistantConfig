@@ -1,0 +1,27 @@
+esphome:
+  name: taverna
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: "Dodgy"
+  password: "ibracadabra"
+
+# Enable logging
+logger:
+
+api: 
+
+ota:
+
+switch:
+  - platform: gpio
+    pin: 14
+    id: relay_canc
+  - platform: template
+    name: "Cancelletto"
+    icon: "mdi:gate"
+    turn_on_action:
+    - switch.turn_on: relay_canc
+    - delay: 500ms
+    - switch.turn_off: relay_canc

@@ -1,0 +1,67 @@
+esphome:
+  name: esp32_ble_devicetrack
+  platform: ESP32
+  board: esp-wrover-kit
+
+wifi:
+  ssid: "Dodgy"
+  password: "ibracadabra"
+  # ...
+  manual_ip:
+    # Set this to the IP of the ESP
+    static_ip: 192.168.1.35
+  # Set this to the IP address of the router. Often ends with .1
+    gateway: 10.0.0.1
+    # The subnet of the network. 255.255.255.0 works for most home networks.
+    subnet: 255.255.255.0
+
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp32 Ble-Devicetrack"
+    password: "7uHHPU3GiJgZ"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+esp32_ble_tracker:
+
+sensor:
+  - platform: xiaomi_lywsdcgq
+    mac_address: 58:2D:34:35:D8:9C 
+    temperature:
+      name: "Temperatura Camere"
+    humidity:
+      name: "Umidità Camere"
+    battery_level:
+      name: "Batteria Sensore/temp/hum Camere"
+  - platform: xiaomi_lywsdcgq
+    mac_address: 58:2D:34:35:DC:D8 
+    temperature:
+      name: "Temperatura Bagno"
+    humidity:
+      name: "Umidità Bagno"
+    battery_level:
+      name: "Batteria Sensore/temp/hum Bagno"
+
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: Gateway Temp/hum
+    ssid:
+      name: Gateway Temp/hum SSID
+    bssid:
+      name: Gateway Temp/hum BSSID
+
+# Example configuration entry
+switch:
+  - platform: restart
+    name: "Restart Gateway Temp/hum"
+

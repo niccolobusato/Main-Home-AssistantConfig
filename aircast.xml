@@ -15,6 +15,30 @@
 <util_log>warn</util_log>
 <log_limit>-1</log_limit>
 <device>
+<udn>5E6AB0DA-7E7A-4FC6-9549-6444F7007040</udn>
+<name>Camera ++</name>
+<mac>cc:cc:7d:94:e8:4d</mac>
+<enabled>1</enabled>
+</device>
+<device>
+<udn>b8b51845d95b4ec4ed23c0c39b9167e4</udn>
+<name>AS-QBELL[Cast]+</name>
+<mac>cc:cc:6e:e9:da:b4</mac>
+<enabled>0</enabled>
+</device>
+<device>
+<udn>1be53c15d06954d1b8cd3fe92bf82348</udn>
+<name>Salotto Tv+</name>
+<mac>cc:cc:ca:0d:b5:03</mac>
+<enabled>0</enabled>
+</device>
+<device>
+<udn>8d2901490e7060df2424f9923d5c746e</udn>
+<name>Corridoio+</name>
+<mac>cc:cc:b1:7d:82:f3</mac>
+<enabled>1</enabled>
+</device>
+<device>
 <udn>4b0112c2d62f5a367eb29648b23a3200</udn>
 <name>Salotto+</name>
 <mac>cc:cc:09:9c:86:84</mac>
@@ -36,7 +60,7 @@
 <udn>bf033119c128ef767bbe75e6fbf3c901</udn>
 <name>Proiettore+</name>
 <mac>cc:cc:6d:82:95:0e</mac>
-<enabled>1</enabled>
+<enabled>0</enabled>
 </device>
 <device>
 <udn>90e926e11fc63256e9dda33af4c8fcbb</udn>

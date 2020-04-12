@@ -11,3 +11,7 @@
     unique_id: this_proiettore
     device_code: 1000
     controller_data: 192.168.1.25
+# Android
+  - platform: androidtv
+    name: Android TV 
+    host: 192.168.1.233

@@ -6,6 +6,7 @@
     entities:
       - media_player.cucina
       - media_player.camera
+      - media_player.corridoio
 #######################################################
 ################ bedroom light group ##################
 #######################################################
@@ -17,3 +18,42 @@
       - light.0220046668c63aaf5b32
       - light.principale
       - switch.sonoff_10003eff4b
+#######################################################
+################ bedroom light group ##################
+#######################################################
+  famiglia:
+    name: Famiglia
+    entities:
+      - device_tracker.life360_claudio
+      - device_tracker.life360_annalisa
+      - person.eleonora
+#######################################################
+################ bedroom light group ##################
+#######################################################
+  no_annalisa:
+    name: No annalisa
+    entities:
+      - device_tracker.life360_claudio
+      - device_tracker.life360_eleonora_busato
+      - device_tracker.niccolo
+      - person.eleonora
+#######################################################
+##################### HA MENU  ########################
+#######################################################
+  hamenu:
+    name: HA-Menu
+    entities:
+      - switch.principale
+      - switch.letto
+      - switch.televisore
+      - switch.scrivania
+      - switch.sonoff_10003eff4b
+  hamenu2:
+    name: HA-Menu2
+    entities:
+      - switch.clima
+      - switch.cucina
+      - switch.sonoff_10003eff18
+
+
+

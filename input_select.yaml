@@ -1,0 +1,20 @@
+  strip_led:
+    name: Colore
+    options:
+      - Bianco
+      - Rosso
+      - Arancione
+      - Blu
+      - Azzurro
+      - Verde
+      - Oro
+      - Rosa
+      - Grigio
+    initial: Bianco
+    icon: mdi:palette
+  nonna:
+    name: Nonna
+    options:
+      - Fuori
+      - A Casa
+    initial: Fuori

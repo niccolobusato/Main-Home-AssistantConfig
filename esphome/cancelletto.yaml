@@ -1,0 +1,73 @@
+---
+esphome:
+  name: doorbell
+  platform: ESP8266
+  board: esp01
+
+wifi:
+  ssid: "Dodgy"
+  password: "ibracadabra"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Cancelletto Fallback Hotspot"
+    password: "TIcJxgKV5hXM"
+
+captive_portal:
+
+
+# Enable logging.
+logger:
+
+# Enable Home Assistant API.
+api:
+
+# Enable over-the-air updates.
+ota:
+
+# Enable Web server.
+web_server:
+  port: 80
+
+# Sync time with Home Assistant.
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+# Text sensors with general information.
+text_sensor:
+  # Expose ESPHome version as sensor.
+  - platform: version
+    name: Versione Cancelletto
+  # Expose WiFi information as sensors.
+  - platform: wifi_info
+    ip_address:
+      name: IP Cancelletto
+    ssid:
+      name: SSID Cancelletto
+    bssid:
+      name: BSSID Cancelletto
+
+# Sensors with general information.
+sensor:
+  # Uptime sensor.
+  - platform: uptime
+    name: Uptime Cancelletto
+
+  # WiFi Signal sensor.
+  - platform: wifi_signal
+    name: Segnale WiFi Cancelletto
+    update_interval: 60s
+
+switch:
+  - platform: gpio
+    pin: GPIO0
+    name: Doorbell Chime
+    id: relay_canc
+  - platform: template
+    name: "Cancelletto"
+    icon: "mdi:gate"
+    turn_on_action:
+    - switch.turn_on: relay_canc
+    - delay: 500ms
+    - switch.turn_off: relay_canc
