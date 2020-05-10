@@ -1,0 +1,78 @@
+esphome:
+  name: aspirapolvere
+  platform: ESP32
+  board: esp-wrover-kit
+ 
+wifi:
+  ssid: "Niccolo"
+  password: "ibracadabra"
+  manual_ip:
+    # Set this to the IP of the ESP
+    static_ip: 192.168.1.70
+  # Set this to the IP address of the router. Often ends with .1
+    gateway: 192.168.1.1
+    # The subnet of the network. 255.255.255.0 works for most home networks.
+    subnet: 255.255.255.0
+ 
+  ap:
+    ssid: "Camera Fallback Hotspot"
+    password: "anypasswordisok"
+ 
+captive_portal:
+ 
+ 
+ 
+web_server:
+  port: 80
+ 
+# Enable logging
+logger:
+  level: DEBUG
+ 
+# Enable Home Assistant API
+api:
+ 
+ota:
+ 
+esp32_camera:
+    external_clock:
+      pin: GPIO0
+      frequency: 20MHz
+    i2c_pins:
+      sda: GPIO26
+      scl: GPIO27
+    data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+    vsync_pin: GPIO25
+    href_pin: GPIO23
+    pixel_clock_pin: GPIO22
+    power_down_pin: GPIO32
+    name: Aspirapolvere
+ 
+output:
+  - platform: gpio
+    pin: GPIO4
+    id: gpio_4
+ 
+binary_sensor:
+  - platform: status
+    name: "Aspirapolvere Camera Status"
+sensor:
+  - platform: wifi_signal
+    name: "Aspirapolvere Camera WiFi Signal Sensor"
+    update_interval: 60s
+light:
+  - platform: binary
+    output: gpio_4
+    name: Aspirapolvere Camera luce
+    
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: Aspirapolvere Camera 
+    ssid:
+      name: Aspirapolvere Camera SSID
+
+# Example configuration entry
+switch:
+  - platform: restart
+    name: "Restart Aspirapolvere Camera"
