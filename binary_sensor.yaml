@@ -77,8 +77,8 @@
       state_topic: "tele/bridge/RESULT"
       name: 'Campanello'
       value_template: '{{value_json.RfReceived.Data}}'
-      payload_on: '810532'
-      payload_off: '810533'
+      payload_on: '40E50E'
+      payload_off: '40E50A'
       qos: 1
     - platform: mqtt
       state_topic: "tele/bridge/RESULT"
